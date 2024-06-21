@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UserType;
+use App\Models\Company;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,10 +16,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-
+        $company = Company::factory()->create();
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => 'admin@admin.com',
+            'company_id' => $company->id,
+            'type' => UserType::ADMIN->value,
         ]);
     }
 }
